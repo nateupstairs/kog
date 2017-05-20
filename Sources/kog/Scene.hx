@@ -2,20 +2,23 @@ package kog;
 
 import kha.Framebuffer;
 import kha.Color;
+import kog.Camera;
+import kog.Material;
 
 class Scene {
-	var models:Array<Model>;
+	public var camera:Camera;
+	public var materials:Array<Material> = [];
 	
 	public function new() {
-		models = [];
+		camera = new Camera();
 	}
 	
-	public function register(m:Model) {
-		models.push(m);
+	public function register(m:Material) {
+		materials.push(m);
 	}
 
 	public function update(delta:Float) {
-		for (m in models) {
+		for (m in materials) {
 			m.update(delta);
 		}
 	}
@@ -25,8 +28,8 @@ class Scene {
 
 		g.begin();
 		g.clear(Color.Black);
-		for (m in models) {
-			m.render(frame);
+		for (m in materials) {
+			m.render(g, camera.vp);
 		}
 		g.end();
 	}
