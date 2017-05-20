@@ -27,7 +27,7 @@ class Scene {
 		var g = frame.g4;
 
 		g.begin();
-		g.clear(Color.Black);
+		g.clear(Color.fromFloats(0.0, 0.0, 0.0), 1.0);
 		for (m in materials) {
 			m.render(g, camera.vp);
 		}
