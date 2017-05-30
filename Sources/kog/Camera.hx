@@ -21,9 +21,9 @@ class Camera {
 		//var projection = FastMatrix4.orthogonalProjection(-10.0, 10.0, -10.0, 10.0, 0.0, 100.0); // In world coordinates
 		
 		// Camera matrix
-		view = FastMatrix4.lookAt(new FastVector3(4, 3, 3), // Camera is at (4, 3, 3), in World Space
+		view = FastMatrix4.lookAt(new FastVector3(0, -10, 0), // Camera is at (0, 0, 0), in World Space
 								  new FastVector3(0, 0, 0), // and looks at the origin
-								  new FastVector3(0, 1, 0) // Head is up (set to (0, -1, 0) to look upside-down)
+								  new FastVector3(0, 0, 1) // Head is up (set to (0, -1, 0) to look upside-down)
 		);
 		
 		vp = FastMatrix4.identity();
