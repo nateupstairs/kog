@@ -18,6 +18,7 @@ class Scene {
 	}
 
 	public function update(delta:Float) {
+		camera.update(delta);
 		for (m in materials) {
 			m.update(delta);
 		}

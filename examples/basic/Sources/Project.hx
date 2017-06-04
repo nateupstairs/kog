@@ -44,6 +44,10 @@ class Project {
 
 	function update(): Void {
 		timer.update();
+		scene.camera.pos.z = 5.0;
+		scene.camera.pos.y = Math.sin(timer.runTime) * 10.0;
+		scene.camera.pos.x = Math.cos(timer.runTime) * 10.0;
+		scene.camera.needsUpdate = true;
 		scene.update(timer.deltaTime);
 	}
 

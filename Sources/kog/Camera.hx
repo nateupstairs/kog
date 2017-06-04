@@ -5,27 +5,37 @@ import kha.math.FastMatrix4;
 
 class Camera {
 	public var vp:FastMatrix4;
-	
+	public var pos:FastVector3 = new FastVector3(0, 0, 0);
+	public var pov:Float = 45.0;
+	public var aspect:Float = 1.0;
+	public var near:Float = 0.1;
+	public var far:Float = 100.0;
+	public var lookAt:FastVector3 = new FastVector3(0, 0, 0);
+	public var up:FastVector3 = new FastVector3(0, 0, 1);
+	public var needsUpdate:Bool = false;
+
 	private var view:FastMatrix4;
 	private var projection:FastMatrix4;
-	private var pos:FastVector3;
-	private var pov:Float;
-	private var aspect:Float;
-	private var near:Float;
-	private var far:Float;
 	
 	public function new() {
-		// Projection matrix: 45° Field of View, 4:3 ratio, display range : 0.1 unit <-> 100 units
-		projection = FastMatrix4.perspectiveProjection(45.0, 4.0 / 3.0, 0.1, 100.0);
+		updateMV();
+	}
+
+	public function update(delta:Float) {
+		if (needsUpdate) {
+			updateMV();
+			needsUpdate = false;
+		}
+	}
+
+	private function updateMV() {
+		projection = FastMatrix4.perspectiveProjection(pov, aspect, near, far);
 		// Or, for an ortho camera
 		//var projection = FastMatrix4.orthogonalProjection(-10.0, 10.0, -10.0, 10.0, 0.0, 100.0); // In world coordinates
 		
 		// Camera matrix
-		view = FastMatrix4.lookAt(new FastVector3(0, -10, 0), // Camera is at (0, 0, 0), in World Space
-								  new FastVector3(0, 0, 0), // and looks at the origin
-								  new FastVector3(0, 0, 1) // Head is up (set to (0, -1, 0) to look upside-down)
-		);
-		
+		view = FastMatrix4.lookAt(pos, lookAt, up);
+
 		vp = FastMatrix4.identity();
 		vp = vp.multmat(projection);
 		vp = vp.multmat(view);
