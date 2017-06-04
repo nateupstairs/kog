@@ -50,11 +50,8 @@ class Material {
 		textures.push(t);
 	}
 	
-	private function updateMVP(g:Graphics, vp:FastMatrix4) {
-		var model = FastMatrix4.identity();
-		var mvp:FastMatrix4 = vp.multmat(model);
-		
-		g.setMatrix(mvpUniform, mvp);
+	private function updateMVP(g:Graphics, vp:FastMatrix4, model:Model) {
+		g.setMatrix(mvpUniform, vp.multmat(model.m));
 	}
 	
 	public function update(delta:Float) {
@@ -72,7 +69,7 @@ class Material {
 			t.update(g);
 		}
 		for (m in models) {
-			updateMVP(g, vp);
+			updateMVP(g, vp, m);
 			g.setVertexBuffer(m.mesh.vertexBuffer);
 			g.setIndexBuffer(m.mesh.indexBuffer);
 			g.drawIndexedVertices();
