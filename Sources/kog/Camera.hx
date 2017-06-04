@@ -2,9 +2,10 @@ package kog;
 
 import kha.math.FastVector3;
 import kha.math.FastMatrix4;
+import kog.Entity;
 import kog.Timer;
 
-class Camera {
+class Camera implements Entity {
 	public var vp:FastMatrix4;
 	public var pos:FastVector3 = new FastVector3(0, 0, 0);
 	public var pov:Float = 45.0;

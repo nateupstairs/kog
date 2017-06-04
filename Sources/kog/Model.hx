@@ -1,10 +1,11 @@
 package kog;
 
 import kha.math.FastMatrix4;
+import kog.Entity;
 import kog.Mesh;
 import kog.Timer;
 
-class Model {
+class Model implements Entity {
 	public var mesh:kog.Mesh;
 	public var m:FastMatrix4;
 	public var needsUpdate:Bool = false;

@@ -8,9 +8,10 @@ import kha.graphics4.FragmentShader;
 import kha.graphics4.VertexStructure;
 import kha.graphics4.CompareMode;
 import kha.Assets;
+import kog.Entity;
 import kog.Model;
 
-class Material {
+class Material implements Entity {
 
 	public var vert:VertexShader;
 	public var frag:FragmentShader;
@@ -36,7 +37,7 @@ class Material {
 		mvpUniform = pipeline.getConstantLocation('MVP');
 	}
 
-	public function register(m:Model) {
+	public function registerModel(m:Model) {
 		models.push(m);
 	}
 	

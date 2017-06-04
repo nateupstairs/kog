@@ -1,0 +1,5 @@
+package kog;
+
+interface Entity {
+    
+}

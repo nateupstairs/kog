@@ -8,6 +8,7 @@ import kha.Assets;
 
 class Project {
 	var scene:kog.Scene;
+	var cc:CameraController;
 
 	public function new() {
 		scene = new kog.Scene();
@@ -36,15 +37,15 @@ class Project {
 		tex.setImage(Assets.images.diffuse);
 		material.addTexture(tex);
 		
-		material.register(model);
-		scene.register(material);
+		cc = new CameraController();
+		cc.registerCamera('camera', scene.camera);
+		
+		material.registerModel(model);
+		scene.registerMaterial(material);
+		scene.registerController(cc);
 	}
 
 	function update(): Void {
-		scene.camera.pos.z = 5.0;
-		scene.camera.pos.y = Math.sin(scene.timer.runTime) * 10.0;
-		scene.camera.pos.x = Math.cos(scene.timer.runTime) * 10.0;
-		scene.camera.needsUpdate = true;
 		scene.update();
 	}
 
