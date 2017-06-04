@@ -4,10 +4,12 @@ import kha.Framebuffer;
 import kha.Color;
 import kog.Camera;
 import kog.Material;
+import kog.Timer;
 
 class Scene {
 	public var camera:Camera;
 	public var materials:Array<Material> = [];
+	public var timer:Timer = new Timer();
 	
 	public function new() {
 		camera = new Camera();
@@ -17,10 +19,11 @@ class Scene {
 		materials.push(m);
 	}
 
-	public function update(delta:Float) {
-		camera.update(delta);
+	public function update() {
+        timer.update();
+		camera.update();
 		for (m in materials) {
-			m.update(delta);
+			m.update();
 		}
 	}
 	

@@ -2,6 +2,7 @@ package kog;
 
 import kha.math.FastVector3;
 import kha.math.FastMatrix4;
+import kog.Timer;
 
 class Camera {
 	public var vp:FastMatrix4;
@@ -21,7 +22,7 @@ class Camera {
 		updateMV();
 	}
 
-	public function update(delta:Float) {
+	public function update() {
 		if (needsUpdate) {
 			updateMV();
 			needsUpdate = false;

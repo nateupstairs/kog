@@ -54,9 +54,9 @@ class Material {
 		g.setMatrix(mvpUniform, vp.multmat(model.m));
 	}
 	
-	public function update(delta:Float) {
+	public function update() {
 		for (m in models) {
-			m.update(delta);
+			m.update();
 		}
 	}
 

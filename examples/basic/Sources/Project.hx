@@ -8,10 +8,8 @@ import kha.Assets;
 
 class Project {
 	var scene:kog.Scene;
-	var timer:kog.Timer;
 
 	public function new() {
-		timer = new kog.Timer();
 		scene = new kog.Scene();
 		
 		Assets.loadEverything(displayModel);
@@ -43,12 +41,11 @@ class Project {
 	}
 
 	function update(): Void {
-		timer.update();
 		scene.camera.pos.z = 5.0;
-		scene.camera.pos.y = Math.sin(timer.runTime) * 10.0;
-		scene.camera.pos.x = Math.cos(timer.runTime) * 10.0;
+		scene.camera.pos.y = Math.sin(scene.timer.runTime) * 10.0;
+		scene.camera.pos.x = Math.cos(scene.timer.runTime) * 10.0;
 		scene.camera.needsUpdate = true;
-		scene.update(timer.deltaTime);
+		scene.update();
 	}
 
 	function render(framebuffer: Framebuffer): Void {

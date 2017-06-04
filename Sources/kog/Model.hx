@@ -2,6 +2,7 @@ package kog;
 
 import kha.math.FastMatrix4;
 import kog.Mesh;
+import kog.Timer;
 
 class Model {
 	public var mesh:kog.Mesh;
@@ -17,7 +18,7 @@ class Model {
 		m = FastMatrix4.identity();
 	}
 
-	public function update(delta:Float) {
+	public function update() {
 		if (needsUpdate) {
 			updateM();
 			needsUpdate = false;
